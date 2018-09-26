@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { OverlayContainer } from '@angular/cdk/overlay';
 
 import {
   MatButtonModule,
@@ -30,7 +31,8 @@ import {
   MatSnackBarModule,
   MatTableModule,
   MatSortModule,
-  MatPaginatorModule
+  MatPaginatorModule,
+  MatNativeDateModule
 } from '@angular/material';
 
 const modules = [
@@ -40,6 +42,7 @@ const modules = [
   MatInputModule,
   MatAutocompleteModule,
   MatDatepickerModule,
+  MatNativeDateModule,
   MatFormFieldModule,
   MatRadioModule,
   MatSelectModule,
@@ -75,4 +78,5 @@ const modules = [
     [...modules]
   ]
 })
-export class MaterialModule { }
+export class MaterialModule {
+}

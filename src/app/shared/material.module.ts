@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
-import { OverlayContainer } from '@angular/cdk/overlay';
+import { MAT_DATE_LOCALE, MAT_DATE_FORMATS, DateAdapter } from '@angular/material/core';
+import { MomentDateAdapter } from '@angular/material-moment-adapter';
 
 import {
   MatButtonModule,
@@ -32,7 +33,7 @@ import {
   MatTableModule,
   MatSortModule,
   MatPaginatorModule,
-  MatNativeDateModule
+  NativeDateModule
 } from '@angular/material';
 
 const modules = [
@@ -42,7 +43,6 @@ const modules = [
   MatInputModule,
   MatAutocompleteModule,
   MatDatepickerModule,
-  MatNativeDateModule,
   MatFormFieldModule,
   MatRadioModule,
   MatSelectModule,
@@ -67,8 +67,21 @@ const modules = [
   MatSnackBarModule,
   MatTableModule,
   MatSortModule,
-  MatPaginatorModule
+  MatPaginatorModule,
+  NativeDateModule
 ];
+
+const DDMMYYYY_FORMATS = {
+  parse: {
+    dateInput: 'DD/MM/YYYY',
+  },
+  display: {
+    dateInput: 'DD/MM/YYYY',
+    monthYearLabel: 'MMM YYYY',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'MMMM YYYY',
+  },
+};
 
 @NgModule({
   imports: [
@@ -76,6 +89,11 @@ const modules = [
   ],
   exports: [
     [...modules]
+  ],
+  providers: [
+    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },
+    { provide: MAT_DATE_FORMATS, useValue: DDMMYYYY_FORMATS },
+    { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] }
   ]
 })
 export class MaterialModule {
